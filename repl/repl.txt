@@ -1,0 +1,30 @@
+REPL-
+	RPEL module provides Read-Eval-Print-Loop implementation.
+	We can launch NODE REPL env by typing "node" command in cmd.
+	
+	const repl = require('repl');
+	
+	repl provides repl.REPLServer class . While running , repl.REPLServer will accept the line on inputs , process the input as per the command specified 
+	and print/process the output.
+	
+Commands-
+	.break - when processing the input lines  , break command will stop processing the input or taking next input (cntrl+C)
+	.clear - clears the REPL current session.
+	.save - saves current session to a file,  save ./save.js
+	.load - loads session from file,  load ./save.js	
+	.exit - exits from current session.
+	.editor - Enter editor mode (<ctrl>-D to finish, <ctrl>-C to cancel).
+
+
+Accessing Core Node.js Modules -
+	-The default evaluator will automatically load Node.js core modules into the REPL environment when used. For instance, unless otherwise declared as a global or scoped variable,
+	the input fs will be evaluated on-demand as global.fs = require('fs')
+	
+		fs.createReadStream('./some/file');
+		
+
+
+	The default evaluator will, by default, assign the result of the most recently evaluated expression to the special variable _ (underscore).
+		Explicitly setting _ to a value will disable this behavior
+	
+	

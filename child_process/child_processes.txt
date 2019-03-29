@@ -1,0 +1,38 @@
+Node Js child processes -
+
+1. Fork
+2. Spwan
+3. Exec
+4. ExecFile
+
+
+Spwan- 
+	let processNew= child_process.spawn(command[ args][ options])
+
+	spwan is designed to run system commands in new process.
+	When we run spwan with a system command  it will run the command in new process and pause your current process. i.e it will not create new V8 instance.
+	
+	we can add 	 listners to interact will with newly created process.
+	
+	Spwan returms stream objects in returm - stdout and stderr.spwan starts sending the response as soon as executed.
+	
+Exec
+	child_process.exec(command[ options][ callback])
+	
+	Exec is similer to spawn but the differene is that it only sends final response . So if we are only intrested in final outcome we should go ahead with exec. 	
+	
+	return type of exec is of type buffer  with final outcome.
+
+Exec file -
+	child_process.execFile(file[ args][ options][ callback])
+
+	when we want to execute a file without using a shell then execFile comes into picture.
+	The difference is that exec spawns a shell whereas the execFile function does not.
+		
+Fork-
+	
+	let newProcess=child_process.fork(modulePath[ args][ options])
+	
+	fork command is used to node mudule/file  in new process and it doesn't pause your current process. i.e it creates new V8 instance.
+	newly added process are refered and worker pool.
+	

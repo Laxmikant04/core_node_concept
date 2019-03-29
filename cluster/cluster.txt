@@ -1,0 +1,15 @@
+Cluster -
+	-By default NOdeJs uses single thread to serve all the requests .To make effective use of multi-core processor system and to provide multi threading
+	NOde Js clusters are used.
+	-Master thread can fork new child threads also known as workers.
+	- When a new worker is forked , it re-run the whole code .
+	- All the forked child thread (workers ) shares the same port as master thread , this is done through IPC.
+	
+How cluster devides requests between available workers-
+
+-LINUX 
+	- on linux system , cluster used round-robin (cluster.SCHED_RR approch to distribute requests among the available workers
+
+-WINDOWS		
+	-on windows system ,it uses cluster.SCHED_NONE approch.(which means leave it upto the operating system).
+	And it's the only other option avaibale apart from round robin approch. 

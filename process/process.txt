@@ -1,0 +1,30 @@
+Process-
+	Process is a global object in node js  which gives us the information about the current running process.
+	As it's gloval object we don't need to import it.
+	
+Events-
+	Exit -
+		this event is called when process is about to exit . generally node process exits when event loop gets empty.
+		
+		process.on('exit'function(){
+			console.log("on exit of process");
+		})
+		
+	beforeExit-
+		this event is scheduled to call just before exit event .
+		once event loop is empty this event is called and generally we have such code block inside which prevents process from exit.
+		
+		process.on('beforeExit' function(err) {
+			console.log('beforeExit');
+		  });
+		  
+	uncaughtException -
+		this event is called when there is any javascript uncought exceptions. for example calling an undefined function.
+		process.on('uncaughtException' function(err) {
+			console.log('Caught exception: ' + err);
+		  });
+		  
+		  
+there are many properties and function is process module which gives details about the process -
+	console.log('Current directory: ' + process.cwd());
+	console.log("process Evn details-"+JSON.stringify(process.env))

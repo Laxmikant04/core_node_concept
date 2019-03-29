@@ -1,0 +1,21 @@
+Query String -
+	query string module is used to parse and format url query strings.
+	
+
+querystring.parse()
+		- this method is used to parse URL query string into key value pair .
+		
+		For example, the query string 'foo=bar&abc=xyz&abc=123' is parsed into:
+
+			{
+			  foo: 'bar',
+			  abc: ['xyz', '123']
+			}
+
+querystring.stringify()-
+		-  this method is used to create/produce URL query string from a given object.
+			
+			querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' });
+			// Returns 'foo=bar&baz=qux&baz=quux&corge='
+
+			

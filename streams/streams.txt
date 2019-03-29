@@ -1,0 +1,12 @@
+streams-
+	-Streams are collections of data—just like arrays or strings. The difference is that streams might not be available all at once, 
+	and they don’t have to fit in memory. This makes streams really powerful when working with large amounts of data,
+	or data that’s coming from an external source one chunk at a time.
+	
+Type-
+	1.A readable stream is an abstraction for a source from which data can be consumed. An example of that is the fs.createReadStream method.
+	2.A writable stream is an abstraction for a destination to which data can be written. An example of that is the fs.createWriteStream method.
+	3.A duplex streams is both Readable and Writable. An example of that is a TCP socket.
+	4. A transform stream is basically a duplex stream that can be used to modify or transform the data as it is written and read.
+		An example of that is the zlib.createGzip stream to compress the data using gzip.
+	

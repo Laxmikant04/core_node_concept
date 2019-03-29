@@ -1,0 +1,45 @@
+ Node Timers-
+ The Timers module in Node.js contains functions that execute code after a set period of time. We don't need to import the module as it's present globally.
+ 
+ Functions-
+	1.setTimeout() /clearTimeout()
+	2.setInterval() /clearInterval()
+	3.setImmediate() /clearImmediate() 
+	
+setTimeout() /clearTimeout()-
+
+	setTimeout used to execute the code once after specific amout of milisecond.
+
+	let timmer =setTimeout(callbacktime in ms arguments);
+
+	setTimeout timmer gurantees that the callback code will not execute before specified ms but does not gurantees the execution of code imidiately after specified ms 
+	because currently executing code might take more time than the specified one.
+
+	clearTimeout(timmer)
+
+
+setInterval() /clearInterval()
+
+	setInterval timmer executes the callback for multiple times after every specified milisecond.
+
+	let timmer =setInterval(callbacktime in ms arguments);
+
+	same as setTimeout setInterval timmer gurantees that the callback code will not execute before specified ms but does not gurantees the execution of code immediately after specified ms 
+	because currently executing code might take more time than the specified one.
+
+	clearTimeout(timmer)
+
+
+setImmediate() /clearImmediate() - 
+
+	setImmediate  timmer executes the callback code immediately after currently executing code (event loop) .
+	 
+	let timmer =setImmediate(callback arguments);  //no timming
+	clearImmediate(timmer)
+
+
+
+
+
+ 
+	
