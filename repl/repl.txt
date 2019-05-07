@@ -1,5 +1,5 @@
 REPL-
-	RPEL module provides Read-Eval-Print-Loop implementation.
+	REPL module provides Read-Eval-Print-Loop implementation.
 	We can launch NODE REPL env by typing "node" command in cmd.
 	
 	const repl = require('repl');

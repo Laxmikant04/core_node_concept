@@ -1,5 +1,6 @@
  Node Timers-
- The Timers module in Node.js contains functions that execute code after a set period of time. We don't need to import the module as it's present globally.
+ The Timers module in Node.js contains functions that execute code after a set period of time. 
+ We don't need to import the module as it's present globally.
  
  Functions-
 	1.setTimeout() /clearTimeout()
