@@ -1,0 +1,88 @@
+//Web-Socket in NodeJS-
+
+//What is a Web Socket?
+//	Web Socket is a protocol which provides a full duplex(multiway) communication i.e allows communication in both directions simultaneously.
+
+
+//npm install socket.io --save
+//npm install express --save	
+
+
+//Server-side code Example:
+
+const express=require('express'); 
+const socketIO=require('socket.io'); 
+const http=require('http') 
+const port=process.env.PORT||3000 
+var app=express(); 
+var io=socketIO(server); 
+  
+// make connection with user from server side 
+io.on('connection', (socket)=>{ 
+  console.log('New user connected'); 
+   //emit message from server to user 
+   socket.emit('newMessage', {  //emits new event 'newMessage' which client will listen
+     from:'jen@mds', 
+     text:'hepppp', 
+     createdAt:123 
+   }); 
+  
+  // listen for message from user 
+  socket.on('createMessage', (newMessage)=>{  // event 'createMessage' raised by client which server is listening
+    console.log('newMessage', newMessage); 
+  }); 
+  
+  // when server disconnects from user 
+  socket.on('disconnect', ()=>{ 
+    console.log('disconnected from user'); 
+  }); 
+}); 
+  
+server.listen(port); 
+
+
+
+//Client side code Example:
+
+<!DOCTYPE html> 
+<html lang="en" dir="ltr"> 
+  <head> 
+    <meta charset="utf-8"> 
+  
+    <title>ChatApp</title> 
+  </head> 
+  <body class="chat"> 
+        <form id='message-form'> 
+          <input name='message' type="text"placeholder="Message"
+                  autofocus autocomplete="off"/> 
+          <button >Send</button> 
+        </form> 
+  
+<script src="/socket.io/socket.io.js"></script> 
+<script> 
+var socket=io() 
+  
+// connection with server 
+socket.on('connect', function(){ 
+  console.log('Connected to Server') 
+  
+}); 
+  
+// message listener from server 
+socket.on('newMessage', function(message){  // event 'newMessage' raised by server which client is listening
+ console.log(message); 
+}); 
+  
+// emits message from user side 
+socket.emit('createMessage', { // event 'createMessage' raised by client which server would listen
+  to:'john@ds', 
+  text:'what kjkljd'
+}); 
+  
+// when disconnected from server 
+socket.on('disconnect', function(){ 
+  console.log('Disconnect from server') 
+}); 
+</script> 
+  </body> 
+</html> 

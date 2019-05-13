@@ -1,0 +1,28 @@
+object memory graph -
+
+The object memory graph in JavaScript is a collection of all objects and their references.
+ The reference path from the most immediate context up to the top is called a retaining path.
+
+ Garbage collection- 
+ Garbage collection is an automatic memory management process that operates in runtime. 
+ It uses a mark-and-sweep algorithm that tracks all the paths and finds all objects in the object graph tree that are referenced from their roots.
+ 
+ 
+garbage collector maintains two spaces -
+1. New space
+2. Old space
+
+New space is where objects or variables re assigned memory .  Garbage collection is fast in this space .
+The objects which live longer i.e. survives 2 GC cycle in this space are moved to Old space. Normally only 20% of all objects are moved to old space.
+Garbage collection is very expensive in Old space. 
+
+V8 engine uses mark-and-sweep algo to perform garbage collection in Old space.
+
+
+Memory leak-
+The memory assigned to the objects is expcted to release once objects are no longer in use But due to some reason it does not releases the memory .
+That is called memory leak.
+
+Tools to monitor memory leak-
+1.Heapdump
+2.strongloop
