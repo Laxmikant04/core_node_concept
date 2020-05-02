@@ -1,0 +1,36 @@
+Writable streams are an abstraction for a destination to which data is written.
+
+Writable stream uses the interface of stream.Writable class .
+
+Importane events of stream.Writable class - 
+
+close : the close event is emitted when when stream or any of it's underlying resources is closed.
+        see ex- writable_close.js
+
+error: error event is emmited when any error occure while writing or piping data.
+
+finish : finish event is emitted when stream.end method is called.
+        see ex- writable_end.js
+
+pipe: pipe event is emitted when stream.pipe() method is called on readable string.
+        see ex- writable.pipe.js
+
+unpipe: pipe event is emitted when stream.unpipe() method is called on readable string.
+        This is also emitted in case this Writable stream emits an error when a Readable stream pipes into it.
+        see ex- writable.pipe.js
+
+functions of Writable class - 
+cork : forces all written data to be buffered in memory. The buffered data will be flushed when either the stream.uncork() or stream.end() methods are called.
+
+The primary intent of writable.cork() is to accommodate a situation in which several small chunks are written to the stream in rapid succession.
+Instead of immediately forwarding them to the underlying destination, writable.cork() buffers all the chunks until writable.uncork() is called,
+which will pass them all to writable._write()
+
+uncork : The writable.uncork() method flushes all data buffered since stream.cork() was called.
+
+destroy : this function destroys the stream and raise close and error event.
+
+end:  calling this function indicates that no further data be written to stream. It first write all the buffered data into stream and then destroy stream.
+        and raise finish event.
+
+write: this function writes the chunk into stream.

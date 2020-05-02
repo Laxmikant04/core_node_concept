@@ -1,0 +1,13 @@
+Websocket-
+- Websocket is a protocol that provides two way real time communication over TCP protocol. When a client sends request to server it does not clone the
+ connection immediately, Instead it waits for the messages from server and client side until connection is explicitly closed by either server or client.
+
+- Websocket does work with load balancer and proxy.
+
+- websocket doesn't support broadcasting.
+
+
+Socket.io- 
+- Its an library to work with Websocket. It provides event based two way communication between broser and server.
+- Socket.io does work with load balancer and proxy.
+- Socket.io doesn't support broadcasting.

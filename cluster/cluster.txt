@@ -13,3 +13,40 @@ How cluster devides requests between available workers-
 -WINDOWS		
 	-on windows system ,it uses cluster.SCHED_NONE approch.(which means leave it upto the operating system).
 	And it's the only other option avaibale apart from round robin approch. 
+
+A Worker object contains all public information and method about a worker.
+
+Worker Events- 
+
+discconnect- Emitted after the worker IPC channel has disconnected. 
+			This can occur when a worker exits gracefully, is killed, or is disconnected manually (such as with worker.disconnect()).
+
+message- Emitted when the cluster master receives a message from any worker.
+
+exit-	When any of the workers die the cluster module will emit the 'exit' event.
+		This can be used to restart the worker by calling .fork() again.
+		for specfic worker , this event will be called when worker exit.
+
+Methods ----- 
+
+worker.disconnect()/cluster.disconnect() - disconnect the worker/cluster. In case of master cluster - Calls .disconnect() on each worker in cluster.workers.
+
+worker.send() - Send a message to a worker or master, optionally with a handle.
+
+				In the master this sends a message to a specific worker. It is identical to ChildProcess.send().
+
+				In a worker this sends a message to the master. It is identical to process.send().
+
+				This example will echo back all messages from the master:
+
+				if (cluster.isMaster) {
+				const worker = cluster.fork();
+				worker.send('hi there');
+
+				} else if (cluster.isWorker) {
+				process.on('message', (msg) => {
+					process.send(msg);
+				});
+				}
+
+cluster.fork() - fork new child worker. 

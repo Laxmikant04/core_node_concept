@@ -15,7 +15,8 @@ Spwan-
 	
 	we can add 	 listners to interact will with newly created process.
 	
-	Spwan returms stream objects in returm - stdout and stderr.spwan starts sending the response as soon as executed.
+	Spwan returms stream objects in returm - stdout and stderr.
+	spwan starts sending the response as soon as executed.
 	
 Exec
 	child_process.exec(command[ options][ callback])
@@ -37,5 +38,5 @@ Fork-
 	
 	fork command is used to node mudule/file  in new process and it doesn't pause your current process.
 	 i.e it creates new V8 instance.
-	newly added process are refered and worker pool.
+	newly added process are refered as worker pool.
 	

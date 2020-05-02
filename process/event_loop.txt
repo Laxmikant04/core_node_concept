@@ -1,0 +1,70 @@
+import { sign } from "crypto"
+import { format } from "url"
+import { finished } from "stream"
+
+Event Loop: -
+Eventloop allows NOdeJs to execute on-blocking I/O operations - despite the fact that javascript is signle threaded , by off-loading the operation form 
+kernal whenever possible.
+
+Availability of multi-threaded kernal allows the operation to be executed in the background , Once the operation is completed the attached callback is
+added to the pool queue to be executed.
+
+How eventloop works --
+
+When NodeJs starts , it initializes the  eventloop , process the provided inputs which could ve async api call,timmers or process.nextTick() and 
+then starts processing eventloop.
+
+┌───────────────────────────┐
+┌─>│           timers          │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │     pending callbacks     │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │       idle, prepare       │
+│  └─────────────┬─────────────┘      ┌───────────────┐
+│  ┌─────────────┴─────────────┐      │   incoming:   │
+│  │           poll            │<─────┤  connections, │
+│  └─────────────┬─────────────┘      │   data, etc.  │
+│  ┌─────────────┴─────────────┐      └───────────────┘
+│  │           check           │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+└──┤      close callbacks      │
+   └───────────────────────────┘
+
+
+Each phase has a FIFO queue of callbacks to execute. whenever eventloop enters to the given phase it executes given phase queue.Availability
+
+1)timers: this phase executes callbacks scheduled by setTimeout() and setInterval().
+2)pending callbacks: executes I/O callbacks deferred to the next loop iteration.
+3)idle, prepare: only used internally.
+4)poll: it performs below two operation
+        1)calculate the time how long it should block and wait for I/0
+        2)executes the pool queue.
+
+New events can be generated during pool phase and added to pool queue. pool queue will be executed untill pool queue is empty or  system-dependent time limit is reached.
+
+once the pool queue is empty it will wait for the new callbacks to be add and then execute immediatly.
+
+5)check: setImmediate() callbacks are invoked here.
+6)close callbacks: some close callbacks, e.g. socket.on('close', ...).
+
+
+process.nextTick():-
+
+process.nextTick() is not part of eventloop phases it is mantained in seprate queue called nextTickQueue.
+It allows the callback to be executed after the current operation is finished inrespective the of eventloop phases.
+
+For example - it there are 5 operations/callbacks in pool queue and event loop is executing 2nd operation and process.nextTick() is called.
+then the callback of nextTick will be called after completion of 2nd operation and then execution of next operation will be resumed.
+
+This is the diffrence between setImmediate and nextTick , in cases of setImmediate all 5 operation of pool queue will be completed i.e pool phase is completed 
+then only  setImmediate callback will be executed in "check" phase.
+
+process.nextTick() uses- 
+1) it allows the whole code snnippet to be executed before calling callback.
+    see diffrence in examples- without_process.nexttick.js ,with_process.nexttick.js
+ 
+
+

@@ -3,25 +3,31 @@ object memory graph -
 The object memory graph in JavaScript is a collection of all objects and their references.
  The reference path from the most immediate context up to the top is called a retaining path.
 
- Garbage collection- 
- Garbage collection is an automatic memory management process that operates in runtime. 
- It uses a mark-and-sweep algorithm that tracks all the paths and finds all objects in the object graph tree that are referenced from their roots.
+ Garbage collection (GC)- 
+ Node JS offers Garbage collector that automatically manages the application level memory. Garbage collector frees up the memory by deleting
+  un-referenced object nad out-of-scope variables. BY doing so GC helps in avoiding "memory leak" problem.
+
+memory leak- memory leak is when an unused object is never deleted from the memory.
+
+During the execution of an program memory is assigned as following:
+
+- All the local variables and reference to the object are stored in "stack". variables/references becomes available for GC once they are out of scoped.
+- All the referece object like string,array,class objects are stored in "Heap".
  
  
-garbage collector maintains two spaces -
+Heap maintains two spaces -
 1. New space
 2. Old space
 
-New space is where objects or variables re assigned memory .  Garbage collection is fast in this space .
-The objects which live longer i.e. survives 2 GC cycle in this space are moved to Old space. Normally only 20% of all objects are moved to old space.
-Garbage collection is very expensive in Old space. 
+New space : New space is where object alocation happens . Garbage collection in this is fast .
+            - also call young generation
+            - It has memory about 1~8 MB.
+            - GC uses Scavenge algo for garbage collection in this space.
 
-V8 engine uses mark-and-sweep algo to perform garbage collection in Old space.
-
-
-Memory leak-
-The memory assigned to the objects is expcted to release once objects are no longer in use But due to some reason it does not releases the memory .
-That is called memory leak.
+Old space- Object that survives GC collection in young generation are moved to this space.
+            - also called old space.
+            - GC collection in this space is slow.
+            - GC uses mark-and-sweep algo for garbage collection in this space.
 
 Tools to monitor memory leak-
 1.Heapdump

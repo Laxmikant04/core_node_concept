@@ -1,0 +1,58 @@
+Readable streams are an abstraction for a source from which data is consumed.
+
+readable stream uses stream.readable class interface.
+
+Readable stream operates in two mode -
+
+1) flowing mode - In flowing mode, data is read from the underlying system automatically and provided to an application
+ as quickly as possible using events via the EventEmitter interface.
+
+2) paused mode - In paused mode, the stream.read() method must be called explicitly to read chunks of data from the stream.
+
+All Readable streams begin in paused mode but can be switched to flowing mode in one of the following ways:
+
+- Adding a 'data' event handler.
+- Calling the stream.resume() method.
+ -Calling the stream.pipe() method to send the data to a Writable.
+
+
+The Readable can switch back to paused mode using one of the following:
+
+- If there are no pipe destinations, by calling the stream.pause() method.
+- If there are pipe destinations, by removing all pipe destinations. Multiple pipe destinations may be removed by calling the stream.unpipe() method.
+
+example - readable.js
+
+
+Events of stream.Readable class - 
+
+close : close event is raised when stream or any of its underlying resource is closed.
+
+data : data event is raised when data is ready to be consumed.
+
+end : end event is raised when no more data is available to be consumed from stream.
+
+error: error event is raised when there is any error while generating the data or stream tries to push wrong chunk.
+
+pause: The 'pause' event is emitted when stream.pause() is called 
+
+resume: The 'pause' event is emitted when stream.resume() is called.
+
+
+methods of stream.Readable class - 
+
+destroy() : destroys the stream and raise close and error event.
+
+pause() : will paused the stream running in flowing mode.
+
+resume() : causes an explicitly paused Readable stream to resume emitting 'data' events, switching the stream into flowing mode.
+            ex- readable_pause_resume.js
+
+pipe() : pipe method attaches a writable stream into readable stream and automatically sets the stream into flowing mode.It is used to push all the 
+         data into writable stream.
+
+unpipe() : unpipe method detach the writable stream from the readable stream attached via stream.pipe() method.set stream in pausd mode.
+
+read() : read method fetched some data from interal buffer and returns. return type of it is buffer by default unless encoading is specified.
+        read methos should be called in paused stream because on flowing stream this method is called automatically.
+        ex- readable_read.js

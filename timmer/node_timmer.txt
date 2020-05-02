@@ -31,12 +31,32 @@ setInterval() /clearInterval()
 	clearTimeout(timmer)
 
 
+Both setTimeout() and setInterval() function returns the inatance of "Timeout" class which s passed to clearTimeout()/clearTimeout() methods to clear the timeouts.
+
+Methods of Timeout Class - 
+1) timeout.hasRef() - if true, it means timmer requires NodeJS event loop to be active. True by default.
+2) timeout.ref() - Calling this function will set/request NodeJs event loop to be active as long as timmer is active. 
+3) timeout.refresh() - Calling this function will restart the timmer from current time . Eg- if a function is scheduled to execute after 1 min and refresh()
+						is called after 50 Sec the callback will be set to execute after next 1 min.
+4) timeout.unref()	- Calling this function would mean that NodeJS event loop does not require to be active as long as timmer is active. NodeJS event loop 
+						may exit befor timmer is executed.
+
+
 setImmediate() /clearImmediate() - 
 
 	setImmediate  timmer executes the callback code immediately after currently executing code (event loop) .
 	 
 	let timmer =setImmediate(callback arguments);  //no timming
 	clearImmediate(timmer)
+
+Both setImmediate() function returns the inatance of "Immediate" class which s passed to clearImmediate() methods to clear the timeouts.
+
+Methods of Immediate class- 
+1) timeout.hasRef() - if true, it means timmer requires NodeJS event loop to be active. True by default.
+2) timeout.ref() - Calling this function will set/request NodeJs event loop to be active as long as timmer is active. 
+4) timeout.unref()	- Calling this function would mean that NodeJS event loop does not require to be active as long as timmer is active. NodeJS event loop 
+						may exit befor timmer is executed.
+
 
 
 
