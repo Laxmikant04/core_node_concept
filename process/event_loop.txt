@@ -3,7 +3,7 @@ import { format } from "url"
 import { finished } from "stream"
 
 Event Loop: -
-Eventloop allows NOdeJs to execute on-blocking I/O operations - despite the fact that javascript is signle threaded , by off-loading the operation form 
+Eventloop allows NOdeJs to execute non-blocking I/O operations - despite the fact that javascript is signle threaded , by off-loading the operation form 
 kernal whenever possible.
 
 Availability of multi-threaded kernal allows the operation to be executed in the background , Once the operation is completed the attached callback is
@@ -11,7 +11,7 @@ added to the pool queue to be executed.
 
 How eventloop works --
 
-When NodeJs starts , it initializes the  eventloop , process the provided inputs which could ve async api call,timmers or process.nextTick() and 
+When NodeJs starts , it initializes the  eventloop , process the provided inputs which could be async api call,timmers or process.nextTick() and 
 then starts processing eventloop.
 
 ┌───────────────────────────┐

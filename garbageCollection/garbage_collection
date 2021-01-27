@@ -5,7 +5,7 @@ The object memory graph in JavaScript is a collection of all objects and their r
 
  Garbage collection (GC)- 
  Node JS offers Garbage collector that automatically manages the application level memory. Garbage collector frees up the memory by deleting
-  un-referenced object nad out-of-scope variables. BY doing so GC helps in avoiding "memory leak" problem.
+  un-referenced object and  out-of-scope variables. BY doing so GC helps in avoiding "memory leak" problem.
 
 memory leak- memory leak is when an unused object is never deleted from the memory.
 

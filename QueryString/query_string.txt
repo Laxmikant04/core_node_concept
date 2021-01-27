@@ -19,11 +19,11 @@ querystring.stringify()-
 			// Returns 'foo=bar&baz=qux&baz=quux&corge='
 
 querystring.escape(str)-
-		-  this method performs URL encoding of given with. querystring.stringify() uses this methos internally.
+		-  this method performs URL encoding of given with. querystring.stringify() uses this method internally.
 		- Not intended to use explecitly.
 
 querystring.unescape(str)-
-		- performs URL decoding of given encoded string. querystring.parse() uses this methos internally.
+		- performs URL decoding of given encoded string. querystring.parse() uses this method internally.
 		- Not intended to use explecitly.
 
 

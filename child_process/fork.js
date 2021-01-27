@@ -23,7 +23,6 @@ app.get('/endpoint', (request, response) => {
    });
 
 
-
    const process1 = fork('./send_mail.js');
    var mails = request.body.emails;
    mails =['process1','process1']

@@ -1,6 +1,6 @@
 Process-
 	Process is a global object in node js  which gives us the information about the current running process.
-	As it's gloval object we don't need to import it.
+	As it's global object we don't need to import it.
 	
 Events-
 	Exit -
