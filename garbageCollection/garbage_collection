@@ -9,7 +9,7 @@ The object memory graph in JavaScript is a collection of all objects and their r
 
 memory leak- memory leak is when an unused object is never deleted from the memory.
 
-During the execution of an program memory is assigned as following:
+During the execution of an program, memory is assigned as following:
 
 - All the local variables and reference to the object are stored in "stack". variables/references becomes available for GC once they are out of scoped.
 - All the referece object like string,array,class objects are stored in "Heap".
@@ -28,6 +28,12 @@ Old space- Object that survives GC collection in young generation are moved to t
             - also called old space.
             - GC collection in this space is slow.
             - GC uses mark-and-sweep algo for garbage collection in this space.
+
+Scavenge is a very fast garbage collection technique and operates with objects in New Space.
+The idea is very simple, New Space is divided in two equal semi-spaces: To-Space and From-Space. Scavenge GC occurs when To-Space is full.
+It simply swaps To and From spaces and copy all live objects to To-Space or promote them to one of the old spaces if they survived two scavenges, and is then entirely erased from the space.
+Scavenges are very fast however they have the overhead of keeping double sized heap and constantly copying objects in memory.
+The reason to use scavenges is because most objects die young.
 
 Tools to monitor memory leak-
 1.Heapdump
