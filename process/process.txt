@@ -25,6 +25,6 @@ Events-
 		  });
 		  
 		  
-there are many properties and function is process module which gives details about the process -
+there are many properties and function in process module which gives details about the process -
 	console.log('Current directory: ' + process.cwd());
 	console.log("process Evn details-"+JSON.stringify(process.env))
